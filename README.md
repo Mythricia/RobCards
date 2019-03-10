@@ -22,6 +22,6 @@ What I **will** accept, are contributions that add features in an elegant and ea
 
 -------
 
-* Project by: mythricia@gmail.com
+* Project by: mythricia at gmail.com
 * Battle.net: Avael#2276  <- HIGHLY PREFERABLE, if I'm awake / alive, I'm online on b.net
 * Discord:    Mythricia#2953
