@@ -132,12 +132,12 @@ local Component = {
         },
 
         -- Heat Costs
-        heatcost1 = {
+        heatCost1 = {
             pos     = {50, 400},
             size    = 24,
             color   = {1, 0, 0},
         },
-        heatcost2 = {
+        heatCost2 = {
             pos     = {50, 520},
             size    = 24,
             color   = {1, 0, 0},
