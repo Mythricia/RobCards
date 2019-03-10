@@ -144,12 +144,12 @@ local Component = {
         },
 
         -- Attack Headers
-        attackHeader1 = {
+        attack1 = {
             pos     = {110, 365},
             size    = 16,
             color   = {0, 0, 0.75},
         },
-        attackHeader2 = {
+        attack2 = {
             pos     = {110, 478},
             size    = 16,
             color   = {0, 0, 0.75},
