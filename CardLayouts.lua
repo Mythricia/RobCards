@@ -112,14 +112,18 @@ local Component = {
         name = {
             pos     = {10, 20},
             color   = {0, 0, 0},
-            wrap    = 110,  -- How many pixels long the text can be, before wrapping to a new line. NOT A COORDINATE
         },
 
         -- Augment count
         augs = {
             pos     = {140, 20},
             color   = {0.1, 0.1, 0.1},
-            wrap    = 110,
+        },
+
+        -- Stats
+        stats = {
+            pos     = {260, 20},
+            color   = {0.5, 0.5, 0, 1},
         },
 
         -- Card Type desc
@@ -128,7 +132,7 @@ local Component = {
             size    = 16,
             color   = {0, 0.75, 0},
             align   = "center",
-            wrap    = 375,
+            wrap    = 375, -- How many pixels long the text can be, before wrapping to a new line. NOT A COORDINATE
         },
 
         -- Heat Costs
@@ -143,7 +147,7 @@ local Component = {
             color   = {1, 0, 0},
         },
 
-        -- Attack Headers
+        -- Attack Names
         attack1 = {
             pos     = {110, 365},
             size    = 16,
