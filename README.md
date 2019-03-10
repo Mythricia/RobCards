@@ -1,11 +1,11 @@
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
-# RobCards
-
-## What's it do?
+## What's this?
 RobCards allows you to define layouts of cards or cardboard cutouts / panels for board games, as well as defining any number of variants of cards that use those layouts. Finally, make pretty renders of these cards, display them on the screen, and / or save the images to disk! Eventually RobCards should be able to render print-ready images that can be used to actually print the designs on real card stock or cardboard.
 
 **RobCards uses the very excellent [Love2D](https://love2d.org/) Lua game framework.**
+
+Documentation lives at [RobCards @ GitHub Pages](https://mythricia.github.io/RobCards/)
 
 ## Contributing
 You can certainly contribute to this project! Feel free to create Issues here on GitHub, or contact me one way or another.
