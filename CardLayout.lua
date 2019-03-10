@@ -1,6 +1,4 @@
---luacheck: ignore 631
 --[[ RobCards card layout config, by mythricia@gmail.com ]]--
-local CardLayout = {} -- This table holds ALL the different card layouts.
 
 --[[ Layouts are defined as such:
 
@@ -56,7 +54,8 @@ allowing you to create horrible glitch monsters to your hearts content!
 
 
 Layout example: Component card
----------------]]
+------------------------------]]
+local CardLayout = {} -- This table holds ALL the different card layouts.
 
 
 CardLayout.Component = {
