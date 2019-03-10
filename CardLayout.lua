@@ -1,6 +1,6 @@
 --luacheck: ignore 631
 --[[ RobCards card layout config, by mythricia@gmail.com ]]--
-local CardLayouts = {} -- This table holds ALL the different card layouts.
+local CardLayout = {} -- This table holds ALL the different card layouts.
 
 --[[ Layouts are defined as such:
 
@@ -59,7 +59,7 @@ Layout example: Component card
 ---------------]]
 
 
-local Component = {
+CardLayout.Component = {
     --:: Body
     body = {
         width   = 400,
@@ -211,8 +211,5 @@ local Component = {
 
 
 
-
--- Actually insert the layouts into the CardLayouts table
-table.insert(CardLayouts, Component)
-
-return CardLayouts
+-- Return the table
+return CardLayout
