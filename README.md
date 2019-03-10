@@ -11,6 +11,7 @@ RobCards allows you to define layouts of cards or cardboard cutouts / panels for
 You can certainly contribute to this project! Feel free to create Issues here on GitHub, or contact me one way or another.
 
 If you wish to contribute code, I will gladly look at your pull requests, however, **please** read the guidlines below.
+
 The [TODO](/TODO.md) document attempts to maintain a list of things that need work in the project. You could start looking there.
 
 
