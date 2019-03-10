@@ -1,6 +1,6 @@
 --luacheck: ignore 631
 --[[ RobCards card layout config, by mythricia@gmail.com ]]--
-local Layouts = {} -- This table holds ALL the different card layouts.
+local CardLayouts = {} -- This table holds ALL the different card layouts.
 
 --[[ Layouts are defined as such:
 
@@ -205,7 +205,6 @@ local SomeCardTypeName = {
 }
 
 
-
 -- We define each different card type layout below. For now, just Component cards.
 local Component = {
     name = "test"
@@ -213,34 +212,4 @@ local Component = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-return Layouts
+return CardLayouts
