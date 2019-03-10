@@ -55,10 +55,11 @@ If this clamping is unnecessary, just talk to me, I can change how it works and 
 allowing you to create horrible glitch monsters to your hearts content!
 
 
-Layout example:
+Layout example: Component card
 ---------------]]
 
-local SomeCardTypeName = {
+
+local Component = {
     --:: Body
     body = {
         width   = 400,
@@ -74,9 +75,9 @@ local SomeCardTypeName = {
             name    = "someDarnRectangle",
             type    = "rectangle",
             style   = "fill",
-            pos     = {0, 0},   -- TOPLEFT of rectangle.
-            width   = 400,
-            height  = 600,
+            pos     = {10, 50},   -- TOPLEFT of rectangle.
+            width   = 380,
+            height  = 265,
             color   = {1, 1, 1},
             -- Optional:
             corner  = 10,   -- If defined, creates rounded corner with this radius. Useful for card outline shape.
@@ -85,12 +86,12 @@ local SomeCardTypeName = {
             name    = "someCircle",
             type    = "circle",
             style   = "line",
-            pos     = {0, 0},   -- CENTERPOINT of the circle.
+            pos     = {200, 300},   -- CENTERPOINT of the circle.
             radius  = 100,
         },
         {
             name    = "someLine",
-            vertices= {0,0, 20,20}, -- pairs of X and Y points to define a line. Can be several segments in a row, just keep adding points.
+            vertices= {0,50, 400,50}, -- pairs of X and Y points to define a line. Can be several segments in a row, just keep adding points.
             width   = 5,
             -- Optional:
             joints  = "none" or "miter" or "bevel",     -- How line segments join together, if there are more than 1.
@@ -99,9 +100,9 @@ local SomeCardTypeName = {
             name    = "somePolygon",
             style   = "fill",
             vertices= {100,100, 150,150, 100,200, 50,150, 100,100},
-            color   = {0, 1, 0},
+            color   = {1, 0, 0},
             -- Optional:
-            pos     = {0, 0},    -- If pos is defined, it will be used to offset all the coordinates listed in the 'vertices' above.
+            pos     = {200, 450},    -- If pos is defined, it will be used to offset all the coordinates listed in the 'vertices' above.
         },
     },
 
@@ -205,11 +206,9 @@ local SomeCardTypeName = {
 }
 
 
--- We define each different card type layout below. For now, just Component cards.
-local Component = {
-    name = "test"
-}
 
 
+-- Actually insert the layouts into the CardLayouts table
+table.insert(CardLayouts, Component)
 
 return CardLayouts
