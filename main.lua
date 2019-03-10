@@ -39,16 +39,15 @@ function love.load()
 	InputManager.PushActionTable(actionTable)
 	love.graphics.setBackgroundColor(0, 161/255, 241/255)
 
-	image = love.graphics.newImage("/art/test.png")
+	--image = love.graphics.newImage("/art/test.png")
 
-	canvas = love.graphics.newCanvas(400, 600, {msaa = 8, format=cmode})
+	canvas = love.graphics.newCanvas(750, 1050, {msaa = 8, format=cmode})
 	-- Rectangle is drawn to the canvas with the regular alpha blend mode.
 	love.graphics.setCanvas(canvas)
 	love.graphics.clear()
 	love.graphics.setBlendMode("alpha")
-	love.graphics.setColor(0.75, 0, 0)
-	--love.graphics.rectangle('fill', 0, 0, 400, 600, 50)
-	love.graphics.draw(image, 0,0,400,600)
+	love.graphics.setColor(0.75, 0.15, 0.15)
+	love.graphics.rectangle('fill', 0, 0, 750, 1050, 50)
 	love.graphics.setCanvas()
 
 	font = love.graphics.setNewFont(24)
@@ -62,16 +61,15 @@ end
 function love.draw()
 	-- very important!: reset color before drawing to canvas to have colors properly displayed
 	-- see discussion here: https://love2d.org/forums/viewtopic.php?f=4&p=211418#p211418
-	love.graphics.setColor(1, 0, 0, 0.75)
-	love.graphics.draw(image, 0,0,0)
+	love.graphics.setColor(1, 1, 1, 1)
 
 
-	--[[
 	-- The rectangle from the Canvas was already alpha blended.
 	-- Use the premultiplied alpha blend mode when drawing the Canvas itself to prevent improper blending.
 	love.graphics.setBlendMode("alpha", "premultiplied")
-	love.graphics.draw(canvas, centerX-200, centerY-300)
+	love.graphics.draw(canvas, centerX-200, centerY-300, 0, 0.5, 0.5)
 
+	--[[
 	-- Prepare for text
 	love.graphics.setBlendMode("alpha")
 	local cy = centerY+baseline+2
