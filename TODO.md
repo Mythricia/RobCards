@@ -1,6 +1,6 @@
 # Current TODO list
 
-* Get this whole thing up on GitHub with Robs blessing (since he owns the idea and eventually assets)
+* Find a better way to store CardLayout and Card definitions... Should ask if separate files is preferable over one big file containing all of them. Also figure out what the friendliest way to add entries to each of the tables would be, right now it is a little confusing.
 * Write documentation for how the CardLayout and Card definitions work and what features are available
 * Get started on CardParser to convert layouts and card defs into a bundle of drawable objects
 * Render drawable bundles onto off-screen Canvases as cards, decide whether to convert to Images or keep as Canvases for use within the application

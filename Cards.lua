@@ -11,8 +11,8 @@
 
 local Cards = {}
 
--- Component cards:
-Cards.Component = {
+--:: Component Cards
+Cards.swordArm = {
     _layout     = "Component",  -- Case sensitive, needs to EXACTLY match the name used in CardLayouts
 
     -- Text tags
@@ -33,8 +33,6 @@ Cards.Component = {
         centerArt = "body_bg.png",
     }
 }
-
-
 
 
 -- Return the Cards table
