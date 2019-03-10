@@ -17,3 +17,17 @@ A: Allows you to define layouts of cards or cardboard cutouts / panels for board
 * [Bonus] Consider making a way to assist in card layout using a user interface inside the app
 * [Bonus] Visualize dice rolls and game calculations inside the app, making use of the already existing card data
 * [ULTRA BONUS] Just make the digital game. rip.
+
+
+
+
+
+
+
+
+
+
+------
+Project by: mythricia@gmail.com
+Battle.net: Avael#2276  <- HIGHLY PREFERABLE, if I'm awake / alive, I'm online on b.net
+Discord:    Mythricia#2953
