@@ -13,7 +13,7 @@ local Cards = {}
 
 --:: Component Cards
 Cards.swordArm = {
-    _layout     = "Component",  -- Case sensitive, needs to EXACTLY match the name used in CardLayouts
+    _layout     = "Component",  -- Case sensitive, must match a layout name in CardLayouts
 
     -- Text tags
     text = {
@@ -30,7 +30,7 @@ Cards.swordArm = {
 
     -- Art tags
     art = {
-        centerArt = "body_bg.png",
+        centerArt = "placeholder_test.png",
     }
 }
 
