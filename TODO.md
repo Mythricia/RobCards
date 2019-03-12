@@ -1,5 +1,6 @@
 # Current TODO list
 
+* Text tags should support in-line color coding
 * Find a better way to store CardLayout and Card definitions... Should ask if separate files is preferable over one big file containing all of them. Also figure out what the friendliest way to add entries to each of the tables would be, right now it is a little confusing.
 * Write documentation for how the CardLayout and Card definitions work and what features are available
 * Get started on CardParser to convert layouts and card defs into a bundle of drawable objects
