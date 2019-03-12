@@ -1,5 +1,10 @@
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
+```diff
+- Project is prototype / unusable stage right now. But feel free to read.
+- Documentation is completely unfinished, take with a massive grain of salt.
+```
+
 ## What's this?
 RobCards allows you to define layouts of cards or cardboard cutouts / panels for board games, as well as defining any number of variants of cards that use those layouts. Finally, make pretty renders of these cards, display them on the screen, and / or save the images to disk! Eventually RobCards should be able to render print-ready images that can be used to actually print the designs on real card stock or cardboard.
 
