@@ -1,11 +1,13 @@
 # RobCards usage documentation
 
-> This documentation is under construction!
->
-> It will probably remain incomplete and erroneous until the application itself is in a more developed state.
->
-> Right now things *can, and will, change*.
+```diff
+- This documentation is under construction!
 
+
+- It will probably remain incomplete and erroneous until the application itself is in a more developed state.
+- Right now things can and will change, rapidly.
+- It will probably become a lot more wordy and complicated, before it gets trimmed down and revised.
+```
 
 ## What's the point of RobCards?
 
