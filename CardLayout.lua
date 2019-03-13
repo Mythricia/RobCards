@@ -63,9 +63,9 @@ CardLayout.Component = {
     body = {
         width   = 400,
         height  = 600,
-        color   = {1, 0, 0, 0.75}, -- For the sake of example: tinting the image red, and making it slightly transparent.
-        image   = "/someFolder/someArt.png", -- Relative to the 'art' folder. In this case, 'someFolder' is inside /art/.
-        cutout  = "cutoutMask.png"  -- Some time in the future this might work. Right now it does nothin'.
+        tint   = {1, 0, 0, 0.75}, -- For the sake of example: tinting the image red, and making it slightly transparent.
+        image   = "placeholder_bg.png", -- Relative to the 'art' folder. In this case, 'someFolder' is inside /art/.
+        cutout  = "cutoutMask.png"  -- NYI: Some time in the future this might work. Right now it does nothin'.
     },
 
     --:: Shapes
@@ -190,7 +190,7 @@ CardLayout.Component = {
         _default = {
             pos     = {200, 200},
             size    = 16,
-            color   = {1, 1, 1},
+            color   = {1, 1, 1, 1},
             align   = "left",
             wrap    = 999,
         },
