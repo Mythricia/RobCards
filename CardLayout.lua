@@ -63,9 +63,9 @@ CardLayout.Component = {
     body = {
         width   = 400,
         height  = 600,
-        tint   = {1, 0, 0, 0.75}, -- For the sake of example: tinting the image red, and making it slightly transparent.
-        image   = "placeholder_bg.png", -- Relative to the 'art' folder. In this case, 'someFolder' is inside /art/.
-        cutout  = "cutoutMask.png"  -- NYI: Some time in the future this might work. Right now it does nothin'.
+        tint    = {1, 1, 1, 1}, -- Tinting the background image
+        image   = "placeholder_bg.png", -- Relative to the 'art' folder
+        cutout  = "cutoutMask.png",  -- NYI: Some time in the future this might work. Right now it does nothin'.
     },
 
     --:: Shapes
@@ -109,7 +109,7 @@ CardLayout.Component = {
     text = {
         -- Name of the card
         name = {
-            pos     = {10, 20},
+            pos     = {15, 20},
             color   = {0, 0, 0},
         },
 
@@ -121,22 +121,51 @@ CardLayout.Component = {
 
         -- Stats
         stats = {
-            pos     = {260, 20},
-            color   = {0.5, 0.5, 0, 1},
+            pos     = {0, 20},
+            color   = {0.5, 0.5, 0},
+            align = "right",
+            wrap = 385
         },
 
         -- Card Type desc
         cardType    = {
-            pos     = {10, 335},
+            pos     = {15, 335},
             size    = 16,
             color   = {0, 0.75, 0},
-            align   = "center",
-            wrap    = 375, -- How many pixels long the text can be, before wrapping to a new line. NOT A COORDINATE
+            align   = "left",
+        },
+
+        -- Attack Names
+        attack1 = {
+            pos     = {100, 365},
+            size    = 16,
+            color   = {0, 0, 0.75},
+        },
+        attack2 = {
+            pos     = {100, 478},
+            size    = 16,
+            color   = {0, 0, 0.75},
+        },
+
+        -- Attack descriptions
+        attackDesc1 = {
+            pos     = {100, 385},
+            size    = 16,
+            color   = {0, 0.75, 0},
+            align   = "left",
+            wrap    = 200, -- How many pixels long the text can be, before wrapping to a new line. NOT A COORDINATE
+        },
+        attackDesc2 = {
+            pos     = {100, 495},
+            size    = 16,
+            color   = {0, 0.75, 0},
+            align   = "left",
+            wrap    = 200,
         },
 
         -- Heat Costs
         heatCost1 = {
-            pos     = {50, 400},
+            pos     = {45, 400},
             size    = 24,
             color   = {1, 0, 0},
         },
@@ -146,39 +175,13 @@ CardLayout.Component = {
             color   = {1, 0, 0},
         },
 
-        -- Attack Names
-        attack1 = {
-            pos     = {110, 365},
-            size    = 16,
-            color   = {0, 0, 0.75},
-        },
-        attack2 = {
-            pos     = {110, 478},
-            size    = 16,
-            color   = {0, 0, 0.75},
-        },
-
-        -- Attack descriptions
-        attackDesc1 = {
-            pos     = {110, 380},
-            size    = 16,
-            color   = {0, 0.75, 0},
-            align   = "center",
-            wrap    = 180,
-        },
-        attackDesc2 = {
-            pos     = {110, 495},
-            size    = 16,
-            color   = {0, 0.75, 0},
-            align   = "center",
-            wrap    = 180,
-        },
-
         -- Attack Damages
         attackDamage1 = {
-            pos     = {340, 400},
+            pos     = {325, 400},
             size    = 24,
             color   = {1, 0.25, 0},
+            align = "center",
+            wrap = 45
         },
         attackDamage2 = {
             pos     = {340, 520},
@@ -201,8 +204,9 @@ CardLayout.Component = {
         centerArt = {
             name    = "CENTER CARD ART",
             pos     = {10, 45},
-            width   = 385,
+            width   = 380,
             height  = 270,
+            tint    = {1,1,1,0.75}
         },
 
     }
