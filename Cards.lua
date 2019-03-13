@@ -30,7 +30,7 @@ Cards.swordArm = {
 
     -- Art tags
     art = {
-        centerArt = "placeholder_test.png",
+        centerArt = "placeholder.png",
     }
 }
 
