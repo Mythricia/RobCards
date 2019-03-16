@@ -10,11 +10,11 @@ I will be referring to things as *cards* throughout the tutorial, however as men
 The very first step to get started, is to create a Card Layout. Card Layouts are essentially templates for how a certain archetype of card should look.
 
 Card Layouts define a couple of important things:
-* The overall size and shape for the card type
-* Any background image texture and / or color
+* The overall size and shape for the card body
+* Any card background image texture and / or color
 * Various solid or outline shapes (boxes, lines)
-* Locations and styles for strings of text, single digits, and entire paragraphs
-* Locations and sizes of individual pieces of art, such as card art, icons, decorations, etc
+* Locations, colours, and fonts, for strings of text
+* Locations, sizes and color tints of artwork (images)
 
 It's important to understand that Layouts only define WHERE and HOW these things will be rendered. The Layout does **not** define exactly WHAT will be rendered... For example, the Layout may only define that there will be a string of text called "name" at the top of the card. The Layout will define the color and size and position of this text. However, the actual text is defined by the card variants themselves later.
 
