@@ -26,9 +26,6 @@ Describes the layout (BUT NOT THE DATA) for the text you want to show on the car
 including position, color, size, alignment (left, right, center).
 Eventually support different fonts for different texts, but not right now.
 
-There is a special _default text tag, that defines the default value for things. It MUST be defined.
-If you forget, or omit, an attribute from a text tag, it will fall back on the _default.
-
 
 <art>
 Describes the location and size of art images. This is where you would define things
@@ -51,6 +48,11 @@ That means if you try to place a shape or image or text outside the body, it wil
 Likewise if you try to create a shape that is too wide, it will clamp to fit inside the body.
 If this clamping is unnecessary, just talk to me, I can change how it works and remove the clamping,
 allowing you to create horrible glitch monsters to your hearts content!
+
+
+There is a special _default tag for <text> and <shapes>, that defines some default values.
+This can be used if you want to, for example, default to a custom font, instead of
+the Love2D default font. Or, if you want all shapes to default to a certain color, etc.
 
 
 Layout example: Component card
@@ -86,7 +88,7 @@ CardLayout.Component = {
             type    = "circle",
             style   = "line",
             pos     = {200, 300},   -- CENTERPOINT of the circle.
-            radius  = 100,
+            width  = 100,
         },
         {
             name    = "someLine",
@@ -189,13 +191,11 @@ CardLayout.Component = {
             color   = {1, 0.25, 0},
         },
 
-        -- Default fallback values
+        -- Custom default values
         _default = {
-            pos     = {200, 200},
             size    = 16,
             color   = {1, 1, 1, 1},
             align   = "left",
-            wrap    = 999,
         },
     },
 
