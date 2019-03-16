@@ -38,6 +38,7 @@ CardLayout.Component = {
         },
         {
             name    = "someLine",
+            type    = "line",
             vertices= {0,50, 400,50}, -- pairs of X and Y points to define a line. Can be several segments in a row, just keep adding points.
             width   = 5,
             -- Optional:
@@ -45,6 +46,7 @@ CardLayout.Component = {
         },
         {
             name    = "somePolygon",
+            type    = "polygon",
             style   = "fill",
             vertices= {100,100, 150,150, 100,200, 50,150, 100,100},
             color   = {1, 0, 0},
