@@ -1,7 +1,7 @@
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
 ```diff
-- Project is prototype / unusable stage right now. But feel free to read.
+- Project is prototype / un-usable stage right now. But feel free to read.
 - Documentation is completely unfinished, take with a massive grain of salt.
 ```
 
