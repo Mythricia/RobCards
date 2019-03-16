@@ -139,7 +139,7 @@ CardLayout.Component = {
         cardType    = {
             x       = 15,
             y       = 335,
-            size    = 16,
+            fontSize    = 16,
             color   = {0, 0.75, 0},
             align   = "left",
         },
@@ -148,13 +148,13 @@ CardLayout.Component = {
         attack1 = {
             x       = 100,
             y       = 365,
-            size    = 16,
+            fontSize    = 16,
             color   = {0, 0, 0.75},
         },
         attack2 = {
             x       = 100,
             y       = 478,
-            size    = 16,
+            fontSize    = 16,
             color   = {0, 0, 0.75},
         },
 
@@ -162,7 +162,7 @@ CardLayout.Component = {
         attackDesc1 = {
             x       = 100,
             y       = 385,
-            size    = 16,
+            fontSize    = 16,
             color   = {0, 0.75, 0},
             align   = "left",
             wrap    = 200, -- How many pixels long the text can be, before wrapping to a new line. NOT A COORDINATE
@@ -170,7 +170,7 @@ CardLayout.Component = {
         attackDesc2 = {
             x       = 100,
             y       = 495,
-            size    = 16,
+            fontSize    = 16,
             color   = {0, 0.75, 0},
             align   = "left",
             wrap    = 200,
@@ -180,13 +180,13 @@ CardLayout.Component = {
         heatCost1 = {
             x       = 45,
             y       = 400,
-            size    = 24,
+            fontSize    = 24,
             color   = {1, 0, 0},
         },
         heatCost2 = {
             x       = 50,
             y       = 520,
-            size    = 24,
+            fontSize    = 24,
             color   = {1, 0, 0},
         },
 
@@ -194,7 +194,7 @@ CardLayout.Component = {
         attackDamage1 = {
             x        = 325,
             y       = 400,
-            size    = 24,
+            fontSize    = 24,
             color   = {1, 0.25, 0},
             align = "center",
             wrap = 45
@@ -202,13 +202,13 @@ CardLayout.Component = {
         attackDamage2 = {
             x       = 340,
             y       = 520,
-            size    = 24,
+            fontSize    = 24,
             color   = {1, 0.25, 0},
         },
 
         -- Custom default values
         _default = {
-            size    = 16,
+            fontSize    = 16,
             align   = "left",
         },
     },
