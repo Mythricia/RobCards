@@ -112,7 +112,7 @@ function CardParser.Parse(layout, def)
         end)()
     }
 
-
+    -- TODO: Support drawing Layout-wide images? Not sure if that belongs in <shapes>
     -- Set up <shapes>
     drawables.shapes = {}
     for tag, shape in pairs(lShapes) do
