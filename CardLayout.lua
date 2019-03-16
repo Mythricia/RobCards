@@ -115,7 +115,7 @@ CardLayout.Component = {
         -- Name of the card
         name = {
             x       = 15,
-            yet     =  20,
+            y       = 20,
             color   = {0, 0, 0},
         },
 
@@ -209,7 +209,6 @@ CardLayout.Component = {
         -- Custom default values
         _default = {
             size    = 16,
-            color   = {1, 1, 1, 1},
             align   = "left",
         },
     },
