@@ -15,7 +15,7 @@ This would let you make, for example, rounded corners. Or any other shape. Not y
 <shapes>
 Describes the layout of rectangles, lines, circles, or polygons, or images that you want to draw.
 Images will be the exact same for every variant of the card, so this is NOT for individual card art.
-Shapes can choose between two styles: "fill" or "line". Solid shape vs outline.
+Shapes can choose between two styles: "fill" or "outline".
 Shape are rendered in order from top to bottom.
 Shape names are, for now, ignored, but you can use them to keep track of what's what.
 Legal shape types are: "rectangle", "circle", "line" and "polygon".
@@ -87,7 +87,7 @@ CardLayout.Component = {
         {
             name    = "someCircle",
             type    = "circle",
-            style   = "line",
+            style   = "outline",
             x       = 200,
             y       = 300, -- CENTERPOINT of the circle.
             width  = 100,
