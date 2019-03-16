@@ -33,14 +33,14 @@ CardLayout.Component = {
             name    = "someCircle",
             type    = "circle",
             style   = "outline",
-            x       = 200,
-            y       = 300, -- CENTERPOINT of the circle.
-            width  = 100,
+            x       = 320,
+            y       = 520, -- CENTERPOINT of the circle.
+            width  = 50,
         },
         {
             name    = "someLine",
             type    = "line",
-            vertices= {0,50, 400,50}, -- pairs of X and Y points to define a line. Can be several segments in a row, just keep adding points.
+            vertices= {0,470, 400,470}, -- pairs of X and Y points to define a line. Can be several segments in a row, just keep adding points.
             weight  = 5, -- thickness of the line
             -- Optional:
             joints  = "none" or "miter" or "bevel", -- How line segments join together, if there are more than 1.
@@ -49,18 +49,18 @@ CardLayout.Component = {
             name    = "somePolygon",
             type    = "polygon",
             style   = "fill",
-            vertices= {100,100, 150,150, 100,200, 50,150, 100,100},
+            vertices= {0,0, -25,50, 25,50}, -- A simple triangle shape
             color   = {1, 0, 0},
             -- Optional:
-            x       = 200,-- If defined, x and y will be used to offset all the vertices.
-            y       = 450,
+            x       = 105,-- If defined, x and y will be used to offset all the vertices.
+            y       = 495,
         },
     },
 
     --:: Text
     text = {
         -- Name of the card
-        name = {
+        cardName = {
             x       = 15,
             y       = 20,
             color   = {0, 0, 0},
@@ -68,7 +68,7 @@ CardLayout.Component = {
 
         -- Augment count
         augs = {
-            x       = 140,
+            x       = 200,
             y       = 20,
             color   = {0.1, 0.1, 0.1},
         },
