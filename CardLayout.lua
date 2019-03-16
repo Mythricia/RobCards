@@ -20,13 +20,14 @@ CardLayout.Component = {
             name    = "someDarnRectangle",
             type    = "rectangle",
             style   = "fill",
-            x       = 10,
+            x       = 15,
             y       = 50,
-            width   = 380,
-            height  = 265,
-            color   = {1, 1, 1},
+            width   = 370,
+            height  = 260,
+            color   = {0, 0, 1},
             -- Optional:
             corner  = 10, -- If defined, creates rounded corner with this radius. Useful for card outline shape.
+            --weight  = 5,  -- If the shape uses the "outline" type, this is the thickness of the lines.
         },
         {
             name    = "someCircle",
@@ -40,7 +41,7 @@ CardLayout.Component = {
             name    = "someLine",
             type    = "line",
             vertices= {0,50, 400,50}, -- pairs of X and Y points to define a line. Can be several segments in a row, just keep adding points.
-            width   = 5,
+            weight  = 5, -- thickness of the line
             -- Optional:
             joints  = "none" or "miter" or "bevel", -- How line segments join together, if there are more than 1.
         },
