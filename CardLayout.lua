@@ -76,18 +76,20 @@ CardLayout.Component = {
             name    = "someDarnRectangle",
             type    = "rectangle",
             style   = "fill",
-            pos     = {10, 50},   -- TOPLEFT of rectangle.
+            x       = 10,
+            y       = 50,
             width   = 380,
             height  = 265,
             color   = {1, 1, 1},
             -- Optional:
-            corner  = 10,   -- If defined, creates rounded corner with this radius. Useful for card outline shape.
+            corner  = 10, -- If defined, creates rounded corner with this radius. Useful for card outline shape.
         },
         {
             name    = "someCircle",
             type    = "circle",
             style   = "line",
-            pos     = {200, 300},   -- CENTERPOINT of the circle.
+            x       = 200,
+            y       = 300, -- CENTERPOINT of the circle.
             width  = 100,
         },
         {
@@ -95,7 +97,7 @@ CardLayout.Component = {
             vertices= {0,50, 400,50}, -- pairs of X and Y points to define a line. Can be several segments in a row, just keep adding points.
             width   = 5,
             -- Optional:
-            joints  = "none" or "miter" or "bevel",     -- How line segments join together, if there are more than 1.
+            joints  = "none" or "miter" or "bevel", -- How line segments join together, if there are more than 1.
         },
         {
             name    = "somePolygon",
@@ -103,7 +105,8 @@ CardLayout.Component = {
             vertices= {100,100, 150,150, 100,200, 50,150, 100,100},
             color   = {1, 0, 0},
             -- Optional:
-            pos     = {200, 450},    -- If pos is defined, it will be used to offset all the coordinates listed in the 'vertices' above.
+            x       = 200,-- If defined, x and y will be used to offset all the vertices.
+            y       = 450,
         },
     },
 
@@ -111,19 +114,22 @@ CardLayout.Component = {
     text = {
         -- Name of the card
         name = {
-            pos     = {15, 20},
+            x       = 15,
+            yet     =  20,
             color   = {0, 0, 0},
         },
 
         -- Augment count
         augs = {
-            pos     = {140, 20},
+            x       = 140,
+            y       = 20,
             color   = {0.1, 0.1, 0.1},
         },
 
         -- Stats
         stats = {
-            pos     = {0, 20},
+            x       = 0,
+            y       = 20,
             color   = {0.5, 0.5, 0},
             align = "right",
             wrap = 385
@@ -131,7 +137,8 @@ CardLayout.Component = {
 
         -- Card Type desc
         cardType    = {
-            pos     = {15, 335},
+            x       = 15,
+            y       = 335,
             size    = 16,
             color   = {0, 0.75, 0},
             align   = "left",
@@ -139,26 +146,30 @@ CardLayout.Component = {
 
         -- Attack Names
         attack1 = {
-            pos     = {100, 365},
+            x       = 100,
+            y       = 365,
             size    = 16,
             color   = {0, 0, 0.75},
         },
         attack2 = {
-            pos     = {100, 478},
+            x       = 100,
+            y       = 478,
             size    = 16,
             color   = {0, 0, 0.75},
         },
 
         -- Attack descriptions
         attackDesc1 = {
-            pos     = {100, 385},
+            x       = 100,
+            y       = 385,
             size    = 16,
             color   = {0, 0.75, 0},
             align   = "left",
             wrap    = 200, -- How many pixels long the text can be, before wrapping to a new line. NOT A COORDINATE
         },
         attackDesc2 = {
-            pos     = {100, 495},
+            x       = 100,
+            y       = 495,
             size    = 16,
             color   = {0, 0.75, 0},
             align   = "left",
@@ -167,26 +178,30 @@ CardLayout.Component = {
 
         -- Heat Costs
         heatCost1 = {
-            pos     = {45, 400},
+            x       = 45,
+            y       = 400,
             size    = 24,
             color   = {1, 0, 0},
         },
         heatCost2 = {
-            pos     = {50, 520},
+            x       = 50,
+            y       = 520,
             size    = 24,
             color   = {1, 0, 0},
         },
 
         -- Attack Damages
         attackDamage1 = {
-            pos     = {325, 400},
+            x        = 325,
+            y       = 400,
             size    = 24,
             color   = {1, 0.25, 0},
             align = "center",
             wrap = 45
         },
         attackDamage2 = {
-            pos     = {340, 520},
+            x       = 340,
+            y       = 520,
             size    = 24,
             color   = {1, 0.25, 0},
         },
@@ -203,7 +218,8 @@ CardLayout.Component = {
     art = {
         centerArt = {
             name    = "CENTER CARD ART",
-            pos     = {10, 45},
+            x       = 10,
+            y       = 45,
             width   = 380,
             height  = 270,
             tint    = {1,1,1,0.75}
