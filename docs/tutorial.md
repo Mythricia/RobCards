@@ -18,7 +18,7 @@ Card Layouts define a couple of important things:
 
 It's important to understand that Layouts only define WHERE and HOW these things will be rendered. The Layout does **not** define exactly WHAT will be rendered... For example, the Layout may only define that there will be a string of text called "name" at the top of the card. The Layout will define the color and size and position of this text. However, the actual text is defined by the card variants themselves later.
 
-Layouts can be very simple or very complex, there is no practical limit. However, for most realistic use cases, creating the Layout is actually the hardest part, and can take quite some time. This time investment should hopefully be worth is, as once you've created the Layout, defining cards that use this layout takes literally just seconds, and you can create as many as you want.
+Layouts can be very simple or very complex, there is no practical limit. However, for most realistic use cases, creating the Layout is actually the hardest part, and can take quite some time. This time investment should hopefully be worth it, as once you've created the Layout, defining cards that use this layout takes literally just seconds, and you can create as many as you want. It may take a few days to create the perfect Layout, but you can create hundreds of cards that use that layout, in very short order, afterwards. And if at any point you want to change something, you can do so, and all those hundreds of cards that use the same Layout, will all change along with it automatically!
 
 Of course, creating the art assets for these card variants (card art, icons, etc) will also take time, but that is outside the scope of RobCards itself.
 
