@@ -16,10 +16,12 @@ local saveCard
 -- constants
 local assets = "/art/"
 local phArt  = love.graphics.newImage(assets.."placeholder.png")
+local MISSING_TEXT = "MISSING_TEXT"
+local MISSING_NAME = "MISSING_NAME"
 
 -- Replaces tags in layout with actual data from card definition
-function CardParser.Parse(layout, def)
-    local drawables = {}
+function CardParser.Parse(layout, def, name)
+    local drawables = {__cardname = name}
 
     local lBody     = layout.body   or {width=400, height=600, tint = {}}
     local lShapes   = layout.shapes or {}
@@ -40,8 +42,8 @@ function CardParser.Parse(layout, def)
 
     local default = {
         -- Generic defaults
-        x = (lBody.width)/2,
-        y = (lBody.height)/2,
+        x       = (lBody.width)/2,
+        y       = (lBody.height)/2,
         width   = 100,
         height  = 50,
         rotation= 0,
@@ -78,16 +80,20 @@ function CardParser.Parse(layout, def)
         },
 
         -- <text> specific defaults
-        align = lText._default.align or "left",
-        wrap = lText._default.wrap or lBody.width,
-        font = lText._default.font or nil,
-        fontSize = lText._default.fontSize or 16,
-        content = lText._default.content or "PLACEHOLDER_TEXT",
+        align   = lText._default.align or "left",
+        wrap    = lText._default.wrap or lBody.width,
+        font    = lText._default.font or nil,
+        fontSize= lText._default.fontSize or 16,
+        text    = lText._default.text or MISSING_TEXT,
 
         -- <shape> defaults
-        style = "fill",
-        type = "rectangle",
-        name = "TAG_NAME",
+        style   = "fill",
+        type    = "rectangle",
+        name    = MISSING_NAME,
+        corner  = lShapes._default.corner or 0,
+        weight  = lShapes._default.weight or 5,
+        joints  = lShapes._default.joints or "miter",
+        vertices={0,0,lBody.width,lBody.height}
     }
 
 
@@ -115,10 +121,10 @@ function CardParser.Parse(layout, def)
     -- TODO: Support drawing Layout-wide images? Not sure if that belongs in <shapes>
     -- Set up <shapes>
     drawables.shapes = {}
-    for tag, shape in pairs(lShapes) do
+    for tag, shape in ipairs(lShapes) do -- NOTE: Forced to use ipairs here because of shapes being array. Meh?
         drawables.shapes[tag] =
         {
-            name    = shape.name or default.name,
+            name    = shape.name or (default.name.."#"..tag),
             x       = shape.x or default.x,
             y       = shape.y or default.y,
 
@@ -127,6 +133,14 @@ function CardParser.Parse(layout, def)
 
             type    = shape.type or default.type,
             style   = shape.style or default.style,
+
+            weight  = shape.weight or default.weight,
+            joints  = shape.joints or default.joints,
+            corner  = shape.corner or default.corner,
+
+            -- Needs a raw copy, since we modify the vertices array in rendering
+            -- Probably not the most elegant workaround but it works for now
+            vertices= {unpack(shape.vertices or default.vertices)},
 
             color   = {
                 shape.color and shape.color[1] or default.color.shape[1],
@@ -141,7 +155,7 @@ function CardParser.Parse(layout, def)
 
     -- Set up all <text>
     drawables.text = {}
-    for tag, content in pairs(dText) do
+    for tag, text in pairs(dText) do
         drawables.text[tag] =
         {
             x       = lText[tag].x or default.x,
@@ -158,7 +172,7 @@ function CardParser.Parse(layout, def)
 
             font    = lText[tag].font or default.font,
             fontSize= lText[tag].fontSize or default.fontSize,
-            content = content or default.content,
+            content = text or default.content,
         }
     end
 
@@ -203,8 +217,10 @@ function drawCard(drawable)
     -- Convert the Canvas to ImageData (or keep canvases? Not sure how that'drawable work with many cards)
     -- Return Image (^Canvas?) to Parse, who bundles it with metadata and returns it all to caller
     -- love.graphics.draw( drawable, x, y, rot, scalex, scaley, offx, offy, shearx, sheary )
+    print(":: Rendering "..(drawable.__cardname or "a card").."!")
 
     local canvas = love.graphics.newCanvas(drawable.body.width, drawable.body.height, {msaa=4})
+    love.graphics.push("all")
     love.graphics.setCanvas(canvas)
     love.graphics.clear()
     love.graphics.setBlendMode("alpha")
@@ -212,36 +228,74 @@ function drawCard(drawable)
 
 
     -- Render <body>
+    print(":: Rendering <body>")
     if drawable.body.image then
         love.graphics.setColor(drawable.body.tint)
         love.graphics.draw(drawable.body.image, 0, 0)
     end
 
 
+    -- TODO: Probably want to name an enum of possible shapes, and use the shape.type to
+    --       index into a table of functions to perform the drawing, yadda yadda...
+    -- Render <shapes>
+    print(":: Rendering <shapes>")
+    for tag, shape in ipairs(drawable.shapes) do
+        print("Drawing "..shape.name.."...")
+        love.graphics.setColor(shape.color)
+        love.graphics.setLineWidth(shape.weight)
+        love.graphics.setLineJoin(shape.joints)
+
+        local mode = shape.style == "outline" and "line" or "fill"
+
+        if shape.type == "rectangle" then
+            love.graphics.rectangle(mode, shape.x, shape.y, shape.width, shape.height, shape.corner)
+        elseif shape.type == "circle" then
+            love.graphics.circle(mode, shape.x, shape.y, shape.width/2)
+        elseif shape.type == "line" then
+            love.graphics.line(shape.vertices)
+        elseif shape.type == "polygon" then
+            -- Offset vertices by x,y
+            for i=1, #shape.vertices, 2 do
+                shape.vertices[i] = shape.vertices[i] + shape.x
+                shape.vertices[i+1] = shape.vertices[i+1] + shape.y
+            end
+            love.graphics.polygon(mode, shape.vertices)
+        else
+            error("Shape Renderer::\nAttempted to render unknown shape type \""..shape.type.."\"!\n"..
+            "Supported Shape Types are:\nrectangle\ncircle\nline\npolygon")
+        end
+    end
+
+
     -- Render art tags
-    for k, v in pairs(drawable.art) do
-        if v.content then
-            print("Drawing "..k.."...")
-            love.graphics.setColor(v.tint)
-            love.graphics.draw(v.content, v.x, v.y, v.rotation, v.scaleX, v.scaleY)
+    print(":: Rendering <art>")
+    for tag, art in pairs(drawable.art) do
+        if art.content then
+            print("Drawing "..tag.."...")
+            love.graphics.setColor(art.tint)
+            love.graphics.draw(art.content, art.x, art.y, art.rotation, art.scaleX, art.scaleY)
         end
     end
 
     -- Render text tags
     -- Prepare default font, for now
-    for k, v in pairs(drawable.text) do
-        if v.content then
-            print("Drawing "..k.."...")
-            local font = love.graphics.setNewFont(v.fontSize)
+    print(":: Rendering <text>")
+    for tag, text in pairs(drawable.text) do
+        if text.content then
+            print("Drawing "..tag.."...")
+            local font = love.graphics.setNewFont(text.fontSize)
             local txt  = love.graphics.newText(font)
-            txt:setf(v.content, v.wrap, v.align)
-            love.graphics.setColor(v.color)
-            love.graphics.draw(txt, v.x, v.y)
+            txt:setf(text.content, text.wrap, text.align)
+            love.graphics.setColor(text.color)
+            love.graphics.draw(txt, text.x, text.y)
         end
     end
 
     -- Save the canvas to Image and return it
     love.graphics.setCanvas()
+    love.graphics.pop()
+    print(":: Card finished rendering!")
+    print("---------------------------")
     return canvas:newImageData()
 end
 
