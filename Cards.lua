@@ -17,7 +17,7 @@ Cards.swordArm = {
 
     -- Text tags
     text = {
-        name        = "Sword Arm",
+        cardName        = "Sword Arm",
         augs        = 2,
         stats       = "0 AC / 3 HP / 0 HC",
         cardType    = "Component: Arm",
@@ -26,6 +26,28 @@ Cards.swordArm = {
         attackDesc1 = "+1 Damage when targeting a limb",
         heatCost1   = 1,
         attackDamage1 = 1,
+    },
+
+    -- Art tags
+    art = {
+        centerArt = "placeholder.png",
+    }
+}
+
+Cards.plasmaBoltCannon = {
+    _layout     = "Component",  -- Case sensitive, must match a layout name in CardLayouts
+
+    -- Text tags
+    text = {
+        cardName    = "Plasma Bolt Cannon",
+        augs        = "0",
+        stats       = "0 AC / 2 HP / 0 HC",
+        cardType    = "Component: Arm",
+
+        attack1     = "Zap: Ranged, Plasma",
+        attackDesc1 = "Heat Cost is increased by 1 each time this is used successively.",
+        heatCost1   = 2,
+        attackDamage1 = 3,
     },
 
     -- Art tags
