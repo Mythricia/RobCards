@@ -40,7 +40,7 @@ Cards.plasmaBoltCannon = {
     -- Text tags
     text = {
         cardName    = "Plasma Bolt Cannon",
-        augs        = "0",
+        augs        = 0,
         stats       = "0 AC / 2 HP / 0 HC",
         cardType    = "Component: Arm",
 
