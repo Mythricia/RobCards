@@ -85,9 +85,9 @@ function CardParser.Parse(layout, def, name)
             },
 
             body = {
-                lBody._default.tint and lBody._default.tint[1] or 0.5,
-                lBody._default.tint and lBody._default.tint[2] or 0.5,
-                lBody._default.tint and lBody._default.tint[3] or 0.5,
+                lBody._default.tint and lBody._default.tint[1] or 1,
+                lBody._default.tint and lBody._default.tint[2] or 1,
+                lBody._default.tint and lBody._default.tint[3] or 1,
                 lBody._default.tint and lBody._default.tint[4] or 1
             }
         },
@@ -116,10 +116,10 @@ function CardParser.Parse(layout, def, name)
         width = lBody.width,
         height = lBody.height,
         tint = {
-            lBody.tint and lBody.tint[1] or default.color.body,
-            lBody.tint and lBody.tint[2] or default.color.body,
-            lBody.tint and lBody.tint[3] or default.color.body,
-            lBody.tint and lBody.tint[4] or default.color.body
+            lBody.tint and lBody.tint[1] or default.color.body[1],
+            lBody.tint and lBody.tint[2] or default.color.body[2],
+            lBody.tint and lBody.tint[3] or default.color.body[3],
+            lBody.tint and lBody.tint[4] or default.color.body[4]
         },
         image = (
         function()
