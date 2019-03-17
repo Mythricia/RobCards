@@ -203,7 +203,7 @@ function CardParser.Parse(layout, def, name)
         drawables.art[tag].rotation = lArt[tag].rotation or default.rotation
     end
 
-    return drawCard(drawables)
+    return drawCard(drawables), drawables
 end
 
 function CardParser.SaveAll(cardTable)
