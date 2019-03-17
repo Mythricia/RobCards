@@ -20,10 +20,10 @@ function love.load()
 	love.graphics.setBackgroundColor(0, 161/255, 241/255)
 
 	local parser = require("modules.CardParser")
-	local s1, layouts = pcall(require, "CardLayout")
-	local s2, definitions = pcall(require, "Cards")
+	local e1, layouts = pcall(require, "CardLayout")
+	local e2, definitions = pcall(require, "Cards")
 
-	if s1 and s2 then
+	if e1 and e2 then
 		local n = 0
 		for k,v in pairs(definitions) do
 			if layouts[v.layout] then
@@ -32,6 +32,14 @@ function love.load()
 				local image = love.graphics.newImage(imageData)
 				cards[n] = {imagedata=imageData, image=image, metadata = metadata}
 			end
+		end
+	else
+		error = {}
+		if not e1 then
+			error.layout = layouts
+		end
+		if not e2 then
+			error.cards = definitions
 		end
 	end
 end
@@ -42,7 +50,12 @@ end
 
 function love.draw()
 	if #cards < 1 then
-		love.graphics.print("Nothing to draw!\nEdit CardLayout.lua and Cards.lua", 50,50)
+		if error then
+			love.graphics.print("There were errors trying to load " .. (error.layout and "CardLayout.lua:" or "Cards.lua:"), 25,25)
+			love.graphics.printf(error.layout or error.cards, 25, 50, love.graphics.getWidth()-50)
+		else
+			love.graphics.print("Nothing to draw!\nEdit CardLayout.lua and Cards.lua", 50,50)
+		end
 		return
 	end
 
