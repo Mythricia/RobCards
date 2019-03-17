@@ -20,6 +20,7 @@ local MISSING_TEXT = "MISSING_TEXT"
 local MISSING_NAME = "MISSING_NAME"
 
 -- Replaces tags in layout with actual data from card definition
+-- Also substitutes default values wherever possible
 function CardParser.Parse(layout, def, name)
     local drawables = {__cardname = name}
 
@@ -32,7 +33,6 @@ function CardParser.Parse(layout, def, name)
     local dText     = def.text  or {}
     local dArt      = def.art   or {}
 
-    -- Some sensible default properties
     -- Check category _default exists, if not, create empty
     lBody._default  = lBody._default or {}
     lShapes._default= lShapes._default or {}
@@ -40,6 +40,7 @@ function CardParser.Parse(layout, def, name)
     lArt._default   = lArt._default or {}
 
 
+    -- Some sensible default properties
     local default = {
         -- Generic defaults
         x       = (lBody.width)/2,
