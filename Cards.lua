@@ -30,7 +30,7 @@ Cards.swordArm = {
 
     -- Art tags
     art = {
-        centerArt = "center_art.png",
+        centerArt = "test/center_art.png",
     }
 }
 
@@ -52,7 +52,7 @@ Cards.plasmaBoltCannon = {
 
     -- Art tags
     art = {
-        centerArt = "center_art.png",
+        centerArt = "test/center_art.png",
     }
 }
 

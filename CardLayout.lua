@@ -10,7 +10,7 @@ CardLayout.Component = {
         width   = 400,
         height  = 600,
         tint    = {1, 1, 1, 1}, -- Tinting the background image
-        image   = "cardbg.png", -- Relative to the 'art' folder
+        image   = "test/cardbg.png", -- Relative to the 'art' folder
         cutout  = "cutoutMask.png",  -- NYI: Some time in the future this might work. Right now it does nothin'.
     },
 
