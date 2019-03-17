@@ -122,7 +122,7 @@ function CardParser.Parse(layout, def, name)
         },
         image = (
         function()
-            if love.filesystem.getInfo(assets..lBody.image) then
+            if type(lBody.image)=="string" and love.filesystem.getInfo(assets..lBody.image) then
                 return love.graphics.newImage(assets..lBody.image)
             else
                 return phBody
@@ -209,7 +209,7 @@ function CardParser.Parse(layout, def, name)
 
         local image = (
         function()
-            if love.filesystem.getInfo(assets..art) then
+            if type(art) =="string" and love.filesystem.getInfo(assets..art) then
                 return love.graphics.newImage(assets..art)
             else
                 return phArt
