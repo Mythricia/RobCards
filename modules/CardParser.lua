@@ -14,8 +14,19 @@ local drawCard
 local saveCard
 
 -- constants
-local assets = "/art/"
-local phArt  = love.graphics.newImage(assets.."placeholder.png")
+local base = love.filesystem.getSourceBaseDirectory()
+local assets
+
+if love.filesystem.isFused() then
+    assets = "assets/art/"
+else
+    assets = "/art/"
+end
+
+local success = love.filesystem.mount(base, "assets")
+local phPath = "/placeholders/"
+local phArt  = love.graphics.newImage(phPath.."placeholder.png")
+local phBody = love.graphics.newImage(phPath.."placeholder_bg.png")
 local MISSING_TEXT = "MISSING_TEXT"
 local MISSING_NAME = "MISSING_NAME"
 
@@ -114,7 +125,7 @@ function CardParser.Parse(layout, def, name)
             if love.filesystem.getInfo(assets..lBody.image) then
                 return love.graphics.newImage(assets..lBody.image)
             else
-                return nil
+                return phBody
             end
         end)()
     }
@@ -196,7 +207,14 @@ function CardParser.Parse(layout, def, name)
             },
         }
 
-        local image = love.graphics.newImage(assets..art) or phArt
+        local image = (
+        function()
+            if love.filesystem.getInfo(assets..art) then
+                return love.graphics.newImage(assets..art)
+            else
+                return phArt
+            end
+        end)()
 
         drawables.art[tag].content = image
         drawables.art[tag].scaleX = drawables.art[tag].width / image:getWidth()

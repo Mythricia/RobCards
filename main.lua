@@ -10,7 +10,8 @@ local canvas
 local font
 local cmode = "normal"
 local baseline
-local cardImages = {}
+local error
+local cards = {}
 
 local imageIndex = 1
 
@@ -19,16 +20,18 @@ function love.load()
 	love.graphics.setBackgroundColor(0, 161/255, 241/255)
 
 	local parser = require("modules.CardParser")
-	local layouts = require("CardLayout")
-	local definitions = require("Cards")
+	local s1, layouts = pcall(require, "CardLayout")
+	local s2, definitions = pcall(require, "Cards")
 
-	local n = 0
-	for k,v in pairs(definitions) do
-		if layouts[v._layout] then
-			n = n + 1
-			local data = parser.Parse(layouts[v._layout], v, v._layout.."."..k)
-			local image = love.graphics.newImage(data)
-			cardImages[n] = {data=data, image=image}
+	if s1 and s2 then
+		local n = 0
+		for k,v in pairs(definitions) do
+			if layouts[v.layout] then
+				n = n + 1
+				local imageData, metadata = parser.Parse(layouts[v.layout], v, v.layout.."."..k)
+				local image = love.graphics.newImage(imageData)
+				cards[n] = {imagedata=imageData, image=image, metadata = metadata}
+			end
 		end
 	end
 end
@@ -38,14 +41,19 @@ function love.update(dt)
 end
 
 function love.draw()
+	if #cards < 1 then
+		love.graphics.print("Nothing to draw!\nEdit CardLayout.lua and Cards.lua", 50,50)
+		return
+	end
+
 	love.graphics.setBlendMode("alpha")
 	love.graphics.setColor(1, 1, 1, 1)
 	local drawCardX = centerX-200
 	local drawCardY = centerY-300
 
-	love.graphics.draw(cardImages[imageIndex].image, drawCardX, drawCardY)
+	love.graphics.draw(cards[imageIndex].image, drawCardX, drawCardY)
 
-	local indexText = (imageIndex.."/"..#cardImages)
+	local indexText = (imageIndex.."/"..#cards.." ("..cards[imageIndex].metadata.name..")")
 	love.graphics.print(indexText, 15,15)
 
 
@@ -102,7 +110,7 @@ actionTable = {
 	{
 		onKeyDown = function()
 			print("Saving card to disk.....")
-			imageData:encode("png", "test_"..cmode..".png")
+			imagedata:encode("png", "test_"..cmode..".png")
 			love.system.openURL(love.filesystem.getSaveDirectory())
 		end
 	},
@@ -110,14 +118,14 @@ actionTable = {
 	{
 		onKeyDown = function()
 			imageIndex = imageIndex + 1
-			if imageIndex > #cardImages then imageIndex = 1 end
+			if imageIndex > #cards then imageIndex = 1 end
 		end
 	},
 	['left'] =
 	{
 		onKeyDown = function()
 			imageIndex = imageIndex - 1
-			if imageIndex < 1 then imageIndex = #cardImages end
+			if imageIndex < 1 then imageIndex = #cards end
 		end
 	},
 }
