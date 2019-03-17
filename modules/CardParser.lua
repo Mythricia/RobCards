@@ -16,6 +16,7 @@ local saveCard
 -- constants
 local base = love.filesystem.getSourceBaseDirectory()
 local assets
+local mask_shader
 
 if love.filesystem.isFused() then
     assets = "assets/art/"
@@ -128,7 +129,15 @@ function CardParser.Parse(layout, def, name)
             else
                 return phBody
             end
-        end)()
+        end)(),
+
+        cutout = (function()
+            if type(lBody.cutout)=="string" and love.filesystem.getInfo(assets..lBody.cutout) then
+                return love.graphics.newImage(assets..lBody.cutout)
+            else
+                return nil  -- TODO: No safety net here, should be improved
+            end
+        end)(),
     }
 
     -- TODO: Support drawing Layout-wide images? Not sure if that belongs in <shapes>
@@ -226,11 +235,6 @@ function CardParser.Parse(layout, def, name)
     return drawCard(drawables), drawables
 end
 
-function CardParser.SaveAll(cardTable)
-    -- Takes a table of card objects and saves all of them one by one, using
-    -- saveCard(card)
-end
-
 
 function drawCard(drawable)
     -- Draw all the drawables to an offscreen canvas, effectively rendering the card
@@ -241,9 +245,22 @@ function drawCard(drawable)
 
     local canvas = love.graphics.newCanvas(drawable.body.width, drawable.body.height, {msaa=4})
     love.graphics.push("all")
-    love.graphics.setCanvas(canvas)
+    love.graphics.setCanvas{canvas, stencil=true}
     love.graphics.clear()
     love.graphics.setColor(1,1,1,1)
+
+    -- Check if we have a body cutout, if so, stencil using it
+    if drawable.body.cutout then
+        print(":: Doing stencil test for body cutout...")
+        local function stencilFunction()
+            love.graphics.setShader(mask_shader)
+            love.graphics.draw(drawable.body.cutout, 0, 0)
+            love.graphics.setShader()
+        end
+
+        love.graphics.stencil(stencilFunction, "replace", 1)
+        love.graphics.setStencilTest("greater", 0)
+    end
 
 
     -- Render <body>
@@ -254,6 +271,7 @@ function drawCard(drawable)
         love.graphics.draw(drawable.body.image, 0, 0)
     end
     love.graphics.setBlendMode("alpha")
+
 
 
     -- TODO: Probably want to name an enum of possible shapes, and use the shape.type to
@@ -313,6 +331,7 @@ function drawCard(drawable)
     end
 
     -- Save the canvas to Image and return it
+    love.graphics.setStencilTest()
     love.graphics.setCanvas()
     love.graphics.pop()
     print(":: Card finished rendering!")
@@ -324,6 +343,23 @@ end
 function saveCard(card)
     -- Saves a card ImageData (or Canvas?) as .png to disk
 end
+
+
+function CardParser.SaveAll(cardTable)
+    -- Takes a table of card objects and saves all of them one by one, using
+    -- saveCard(card)
+end
+
+
+mask_shader = love.graphics.newShader[[
+    vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords) {
+       if (Texel(texture, texture_coords).rgb == vec3(0.0)) {
+          // a discarded pixel wont be applied as the stencil.
+          discard;
+       }
+       return vec4(1.0);
+    }
+ ]]
 
 
 
