@@ -22,7 +22,7 @@ local MISSING_NAME = "MISSING_NAME"
 -- Replaces tags in layout with actual data from card definition
 -- Also substitutes default values wherever possible
 function CardParser.Parse(layout, def, name)
-    local drawables = {__cardname = name}
+    local drawables = {name = name}
 
     local lBody     = layout.body   or {width=400, height=600, tint = {}}
     local lShapes   = layout.shapes or {}
@@ -218,7 +218,7 @@ function drawCard(drawable)
     -- Convert the Canvas to ImageData (or keep canvases? Not sure how that'drawable work with many cards)
     -- Return Image (^Canvas?) to Parse, who bundles it with metadata and returns it all to caller
     -- love.graphics.draw( drawable, x, y, rot, scalex, scaley, offx, offy, shearx, sheary )
-    print(":: Rendering "..(drawable.__cardname or "a card").."!")
+    print(":: Rendering "..(drawable.name or "a card").."!")
 
     local canvas = love.graphics.newCanvas(drawable.body.width, drawable.body.height, {msaa=4})
     love.graphics.push("all")

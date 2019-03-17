@@ -13,7 +13,7 @@ local Cards = {}
 
 --:: Component Cards
 Cards.swordArm = {
-    _layout     = "Component",  -- Case sensitive, must match a layout name in CardLayouts
+    layout     = "Component",  -- Case sensitive, must match a layout name in CardLayouts
 
     -- Text tags
     text = {
@@ -35,7 +35,7 @@ Cards.swordArm = {
 }
 
 Cards.plasmaBoltCannon = {
-    _layout     = "Component",  -- Case sensitive, must match a layout name in CardLayouts
+    layout     = "Component",  -- Case sensitive, must match a layout name in CardLayouts
 
     -- Text tags
     text = {
