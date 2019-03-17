@@ -110,7 +110,7 @@ actionTable = {
 	{
 		onKeyDown = function()
 			print("Saving card to disk.....")
-			imagedata:encode("png", "test_"..cmode..".png")
+			cards[imageIndex].imagedata:encode("png", cards[imageIndex].metadata.name..".png")
 			love.system.openURL(love.filesystem.getSaveDirectory())
 		end
 	},
