@@ -19,11 +19,12 @@ local assets
 
 if love.filesystem.isFused() then
     assets = "assets/art/"
+    local success = love.filesystem.mount(base, "assets")
+    if not success then error("Encountered an unknown error trying to access game directory!") end
 else
     assets = "/art/"
 end
 
-local success = love.filesystem.mount(base, "assets")
 local phPath = "/placeholders/"
 local phArt  = love.graphics.newImage(phPath.."placeholder.png")
 local phBody = love.graphics.newImage(phPath.."placeholder_bg.png")
@@ -242,16 +243,17 @@ function drawCard(drawable)
     love.graphics.push("all")
     love.graphics.setCanvas(canvas)
     love.graphics.clear()
-    love.graphics.setBlendMode("alpha")
     love.graphics.setColor(1,1,1,1)
 
 
     -- Render <body>
     print(":: Rendering <body>")
+    love.graphics.setBlendMode("alpha", "premultiplied")
     if drawable.body.image then
         love.graphics.setColor(drawable.body.tint)
         love.graphics.draw(drawable.body.image, 0, 0)
     end
+    love.graphics.setBlendMode("alpha")
 
 
     -- TODO: Probably want to name an enum of possible shapes, and use the shape.type to

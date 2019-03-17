@@ -59,7 +59,6 @@ function love.draw()
 		return
 	end
 
-	love.graphics.setBlendMode("alpha")
 	love.graphics.setColor(1, 1, 1, 1)
 	local drawCardX = centerX-200
 	local drawCardY = centerY-300
