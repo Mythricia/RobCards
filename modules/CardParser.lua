@@ -154,7 +154,7 @@ function CardParser.Parse(layout, def, name)
             height  = shape.height or default.height,
 
             type    = shape.type or default.type,
-            style   = shape.style or default.style,
+            style   = (shape.style == "outline" and "line") or default.style,
 
             weight  = shape.weight or default.weight,
             joints  = shape.joints or default.joints,
@@ -284,12 +284,10 @@ function drawCard(drawable)
         love.graphics.setLineWidth(shape.weight)
         love.graphics.setLineJoin(shape.joints)
 
-        local mode = shape.style == "outline" and "line" or "fill"
-
         if shape.type == "rectangle" then
-            love.graphics.rectangle(mode, shape.x, shape.y, shape.width, shape.height, shape.corner)
+            love.graphics.rectangle(shape.style, shape.x, shape.y, shape.width, shape.height, shape.corner)
         elseif shape.type == "circle" then
-            love.graphics.circle(mode, shape.x, shape.y, shape.width/2)
+            love.graphics.circle(shape.style, shape.x, shape.y, shape.width/2)
         elseif shape.type == "line" then
             love.graphics.line(shape.vertices)
         elseif shape.type == "polygon" then
@@ -298,7 +296,7 @@ function drawCard(drawable)
                 shape.vertices[i] = shape.vertices[i] + shape.x
                 shape.vertices[i+1] = shape.vertices[i+1] + shape.y
             end
-            love.graphics.polygon(mode, shape.vertices)
+            love.graphics.polygon(shape.style, shape.vertices)
         else
             error("Shape Renderer::\nAttempted to render unknown shape type \""..shape.type.."\"!\n"..
             "Supported Shape Types are:\nrectangle\ncircle\nline\npolygon")
