@@ -13,8 +13,8 @@ function love.conf(t)
     t.window.title = "Do Androids Dream of Electric Alpacas?"
     t.window.icon  = "icon.png"
     t.window.vsync = true
-    t.window.width = 600
-    t.window.height = 800
+    t.window.width = 800
+    t.window.height = 4 * (t.window.width / 3) -- Maintaining a 4:3 aspect ratio
     t.window.msaa = 8
     --t.window.fullscreen = true
 end
