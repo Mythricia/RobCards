@@ -17,7 +17,7 @@ local imageIndex = 1
 
 function love.load()
 	InputManager.PushActionTable(actionTable)
-	love.graphics.setBackgroundColor(0, 161/255, 241/255)
+	love.graphics.setBackgroundColor(0, 0, 0)
 
 	local parser = require("modules.CardParser")
 	local e1, layouts = pcall(require, "CardLayout")
