@@ -60,8 +60,8 @@ function love.draw()
 	end
 
 	love.graphics.setColor(1, 1, 1, 1)
-	local drawCardX = centerX-200
-	local drawCardY = centerY-300
+	local drawCardX = centerX-(cards[imageIndex].image:getWidth() / 2)
+	local drawCardY = centerY-(cards[imageIndex].image:getHeight() / 2)
 
 	love.graphics.draw(cards[imageIndex].image, drawCardX, drawCardY)
 
