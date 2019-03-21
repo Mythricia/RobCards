@@ -186,10 +186,10 @@ function CardParser.Parse(layout, def, name)
             wrap    = lText[tag].wrap or default.wrap,
 
             color   = {
-                lText[tag].color[1] or default.color.text[1],
-                lText[tag].color[2] or default.color.text[2],
-                lText[tag].color[3] or default.color.text[3],
-                lText[tag].color[4] or default.color.text[4]
+                lText[tag].color and lText[tag].color[1] or default.color.text[1],
+                lText[tag].color and lText[tag].color[2] or default.color.text[2],
+                lText[tag].color and lText[tag].color[3] or default.color.text[3],
+                lText[tag].color and lText[tag].color[4] or default.color.text[4]
             },
 
             font    = lText[tag].font or default.font,
@@ -202,20 +202,6 @@ function CardParser.Parse(layout, def, name)
     -- Set up all <art>
     drawables.art = {}
     for tag, art in pairs(dArt) do
-        drawables.art[tag] =
-        {
-            name    = lArt[tag] or default.name,
-            x       = lArt[tag].x or default.x,
-            y       = lArt[tag].y or default.y,
-            width   = lArt[tag].width or default.size,
-            height  = lArt[tag].height or default.size,
-            tint    = {
-                lArt[tag].tint[1] or default.color.art[1],
-                lArt[tag].tint[2] or default.color.art[2],
-                lArt[tag].tint[3] or default.color.art[3],
-                lArt[tag].tint[4] or default.color.art[4]
-            },
-        }
 
         local image = (
         function()
@@ -225,6 +211,22 @@ function CardParser.Parse(layout, def, name)
                 return phArt
             end
         end)()
+
+
+        drawables.art[tag] =
+        {
+            name    = lArt[tag] or default.name,
+            x       = lArt[tag].x or default.x,
+            y       = lArt[tag].y or default.y,
+            width   = lArt[tag].width or image:getWidth() or default.width,
+            height  = lArt[tag].height or image:getHeight() or default.height,
+            tint    = {
+                lArt[tag].tint and lArt[tag].tint[1] or default.color.art[1],
+                lArt[tag].tint and lArt[tag].tint[2] or default.color.art[2],
+                lArt[tag].tint and lArt[tag].tint[3] or default.color.art[3],
+                lArt[tag].tint and lArt[tag].tint[4] or default.color.art[4]
+            },
+        }
 
         drawables.art[tag].content = image
         drawables.art[tag].scaleX = drawables.art[tag].width / image:getWidth()
