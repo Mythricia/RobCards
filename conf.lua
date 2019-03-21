@@ -16,5 +16,7 @@ function love.conf(t)
     t.window.width = 800
     t.window.height = 4 * (t.window.width / 3) -- Maintaining a 4:3 aspect ratio
     t.window.msaa = 8
+    t.window.x = 50
+    t.window.y = 50
     --t.window.fullscreen = true
 end
