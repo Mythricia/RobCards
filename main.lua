@@ -5,6 +5,8 @@ local actionTable
 -- Forward function decs
 local drawKeyHelper
 local drawMouseHelper
+local saveSingleCard
+local saveAllCards
 
 local centerX = love.graphics.getWidth() / 2
 local centerY = love.graphics.getHeight() / 2
@@ -124,9 +126,8 @@ actionTable = {
 	['space'] =
 	{
 		onKeyDown = function()
-			print("Saving card to disk.....")
-			cards[imageIndex].imagedata:encode("png", cards[imageIndex].metadata.name..".png")
-			love.system.openURL(love.filesystem.getSaveDirectory())
+			print("Saving card to disk...")
+			saveSingleCard(imageIndex)
 		end,
 		label = "Save to disk"
 	},
@@ -155,7 +156,12 @@ actionTable = {
 	},
 	['Left Click (Hold)'] =
 	{ -- Fake keybind, doesn't work with InputManager
-	label = "Card coordinates"}
+	label = "Card coordinates"},
+	['p'] = {
+		onKeyDown = function()
+			saveAllCards()
+		end
+	}
 }
 
 
@@ -190,24 +196,39 @@ end
 function drawMouseHelper(drawX, drawY, width, height)
 	local mouseX, mouseY = love.mouse.getPosition()
 
-		local cardX = math.floor(math.clamp(mouseX - drawX, 0, width))
-		local cardY = math.floor(math.clamp(mouseY - drawY, 0, height))
-		local str = "Card Coords: "..cardX..","..cardY
+	local cardX = math.floor(math.clamp(mouseX - drawX, 0, width))
+	local cardY = math.floor(math.clamp(mouseY - drawY, 0, height))
+	local str = "Card Coords: "..cardX..","..cardY
 
-		local font = love.graphics.newFont(20)
-		str = love.graphics.newText(font, str)
+	local font = love.graphics.newFont(20)
+	str = love.graphics.newText(font, str)
 
-		love.graphics.setColor(0,0,0,0.85)
-		love.graphics.rectangle("fill", mouseX-100, mouseY+17, 225, 19)
+	love.graphics.setColor(0,0,0,0.85)
+	love.graphics.rectangle("fill", mouseX-100, mouseY+17, 225, 19)
 
-		love.graphics.setColor(1,0,0,1)
-		love.graphics.circle("fill", mouseX, mouseY, 3)
-		love.graphics.draw(str, mouseX-100, mouseY+15)
+	love.graphics.setColor(1,0,0,1)
+	love.graphics.circle("fill", mouseX, mouseY, 3)
+	love.graphics.draw(str, mouseX-100, mouseY+15)
 end
 
 
 function math.clamp(val, lower, upper)
-    assert(val and lower and upper, "math.Clamp:: Wrong number of arguments")
-    if lower > upper then lower, upper = upper, lower end -- swap if boundaries supplied the wrong way
-    return math.max(lower, math.min(upper, val))
+	assert(val and lower and upper, "math.Clamp:: Wrong number of arguments")
+	if lower > upper then lower, upper = upper, lower end -- swap if boundaries supplied the wrong way
+	return math.max(lower, math.min(upper, val))
+end
+
+
+function saveSingleCard(index)
+	cards[index].imagedata:encode("png", cards[imageIndex].metadata.name..".png")
+	love.system.openURL(love.filesystem.getSaveDirectory())
+end
+
+function saveAllCards()
+	for i,v in ipairs(cards) do
+		print("Saving card #"..i.."...")
+		v.imagedata:encode("png", v.metadata.name..".png")
+	end
+
+	love.system.openURL(love.filesystem.getSaveDirectory())
 end
