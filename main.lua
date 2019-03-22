@@ -155,12 +155,15 @@ actionTable = {
 		label = "Toggle this help"
 	},
 	['Left Click (Hold)'] =
-	{ -- Fake keybind, doesn't work with InputManager
-	label = "Card coordinates"},
+	{
+		-- Fake keybind, doesn't work with InputManager
+		label = "Card coordinates"
+	},
 	['p'] = {
 		onKeyDown = function()
 			saveAllCards()
-		end
+		end,
+		label = "Save ALL to disk"
 	}
 }
 
