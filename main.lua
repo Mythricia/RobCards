@@ -190,8 +190,8 @@ end
 function drawMouseHelper(drawX, drawY, width, height)
 	local mouseX, mouseY = love.mouse.getPosition()
 
-		local cardX = math.clamp(mouseX - drawX, 0, width)
-		local cardY = math.clamp(mouseY - drawY, 0, height)
+		local cardX = math.floor(math.clamp(mouseX - drawX, 0, width))
+		local cardY = math.floor(math.clamp(mouseY - drawY, 0, height))
 		local str = "Card Coords: "..cardX..","..cardY
 
 		local font = love.graphics.newFont(20)
