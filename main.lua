@@ -70,19 +70,14 @@ function love.draw()
 
 
 	if love.mouse.isDown(1) then
-		love.graphics.print("Screen Coords: "..love.mouse.getX()..","..love.mouse.getY(), 50, love.graphics.getHeight()-50)
+		local mouseX, mouseY = love.mouse.getPosition()
 
-		local cardX = love.mouse.getX() - drawCardX
-		local cardY = love.mouse.getY() - drawCardY
-
-		local cardX = (cardX >= 0 and cardX or 0)
-		local cardY = (cardY >= 0 and cardY or 0)
-
-		local cardX = (cardX <= 400 and cardX or 400)
-		local cardY = (cardY <= 600 and cardY or 600)
+		local cardX = mouseX - drawCardX
+		local cardY = mouseY - drawCardY
 
 		love.graphics.setColor(1,0,0,1)
-		love.graphics.print("Card Coords: "..cardX..","..cardY, love.mouse.getX()+15, love.mouse.getY()+15)
+		love.graphics.circle("fill", mouseX, mouseY, 3)
+		love.graphics.print("Card Coords: "..cardX..","..cardY, mouseX+15, mouseY+15, 0, 1.5)
 	end
 end
 
